@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <!--优先使用IE最新版本和Chrome-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--移动设备上屏幕显示区域的设置-->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <!--主要是针对苹果手机将数字自动识别为号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--启用全屏模式，伪装app，离线应用。-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--隐藏状态栏/设置状态栏颜色-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 ，告诉浏览器页面是否为手持设备优化，会被MobileOptimized覆盖 (旧浏览器和功能机上某些浏览器识别)-->
+    <meta name="HandheldFriendly" content="True">
+    <!-- 微软的老式浏览器 告诉浏览器页面为某个宽度特殊优化-->
+    <meta name="MobileOptimized" content="width">
+    <!--指定适合自己网站的渲染内核名称-->
+    <meta name="renderer" content="webkit"/>
+    <title>本地图片上传即时预览效果</title>
+    <!--<script src="js/flexible.js"></script>-->
+    <!--<script src="js/flexible_css.js"></script>-->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <style type="text/css" rel="stylesheet">
+        form {
+            position: relative;
+        }
+
+        .upload {
+            background: #000;
+            color: #fff;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 30px;
+            width: 100px;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<form enctype="multipart/form-data" name="form1">
+    <input id="f" type="file" name="f" onchange="change()"/>
+    <div class="upload">上传图片</div>
+    <p>预览:</p>
+    <p>
+        <img id="preview" alt="" name="pic"/>
+    </p>
+</form>
+<script src="js/placeImage.js"></script>
+</body>
+</html>

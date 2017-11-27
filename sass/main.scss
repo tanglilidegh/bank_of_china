@@ -1,0 +1,48 @@
+@import 'px2rem';
+
+.small_font{
+  @include font-dpr(10px);
+}
+.f-t-18 {
+  @include font-dpr(18px);
+}
+
+.f-t-14 {
+  @include font-dpr(14px);
+}
+
+.f-t-16 {
+  @include font-dpr(16px);
+}
+
+.f-b {
+  font-weight: bolder;
+}
+
+.m-b-100 {
+  @include px2rem(margin-bottom, 100px);
+}
+.m-b-60 {
+  @include px2rem(margin-bottom, 60px);
+}
+.m-b-80 {
+  @include px2rem(margin-bottom, 80px);
+}
+.m-b-150 {
+  @include px2rem(margin-bottom, 150px);
+}
+.m-b-30 {
+  @include px2rem(margin-bottom, 30px);
+}
+.m-r-15 {
+  @include px2rem(margin-right, 15px);
+}
+.p-b-40{
+  @include px2rem(padding-bottom, 40px);
+  
+}
+body{
+  color: #000;
+}
+
+

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <!--优先使用IE最新版本和Chrome-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--移动设备上屏幕显示区域的设置-->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <!--主要是针对苹果手机将数字自动识别为号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--启用全屏模式，伪装app，离线应用。-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--隐藏状态栏/设置状态栏颜色-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 ，告诉浏览器页面是否为手持设备优化，会被MobileOptimized覆盖 (旧浏览器和功能机上某些浏览器识别)-->
+    <meta name="HandheldFriendly" content="True">
+    <!-- 微软的老式浏览器 告诉浏览器页面为某个宽度特殊优化-->
+    <meta name="MobileOptimized" content="width">
+    <!--指定适合自己网站的渲染内核名称-->
+    <meta name="renderer" content="webkit"/>
+    <title>移动端分享弹出层</title>
+    <script src="js/flexible.js"></script>
+    <script src="js/flexible_css.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <style type="text/css" rel="stylesheet">
+
+        /* =========
+           分享浮动层
+           ========= */
+
+        .popup-wrapper {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0);
+            z-index: 10004;
+            display: none;
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -4.8rem;
+            margin-left: -4.466666666666667rem;
+            display: none;
+            width: 8.933333333333334rem;
+            height: 9.6rem;
+            background: #fff;
+            z-index: 10005;
+            border-radius: 0.13333333333333333rem;
+        }
+
+        .popup-title {
+            position: relative;
+            width: 100%;
+            height: 1.2266666666666666rem;
+            line-height: 1.2266666666666666rem;
+            text-align: center;
+            color: #0f5bba;
+            font-size: 16px;
+            font-weight: normal;
+            background: #f4f4f4;
+            border-top-left-radius: 0.13333333333333333rem;
+            border-top-right-radius: 0.13333333333333333rem;
+        }
+
+        .close {
+            position: absolute;
+            right: 0.4rem;
+            top: 0.4rem;
+            display: block;
+            width: 0.32rem;
+            height: 0.32rem;
+            cursor: pointer;
+        }
+
+        .close img {
+            width: 0.32rem;
+            height: 0.32rem;
+        }
+
+        .content-list {
+            padding: 0 0.4rem;
+        }
+
+        .content-list li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid #f4f4f4;
+        }
+
+        .content-list li a {
+            position: relative;
+            display: block;
+            font-size: 16px;
+            color: #2b2b2b;
+            cursor: pointer;
+        }
+
+        .content-list li a:hover {
+            text-decoration: none;
+        }
+
+        .content-list li:last-child {
+            border-bottom: 0;
+        }
+
+        .content-list a p {
+            line-height: 1.5;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .content-list a p.w65 {
+            margin-bottom: 0.3rem;
+        }
+
+        .content-list a img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2.1333333333333333rem;
+            height: 1.3866666666666667rem;
+        }
+
+        .share-btn {
+            position: fixed;
+            right: 0.3rem;
+            bottom: 1.6rem;
+            font-size: 14px;
+        }
+
+        .w72 {
+            width: 72%;
+        }
+
+        .w100 {
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<p>下面是弹出层内容的代码</p>
+<!-- 用来点击的按钮 -->
+<div class="share-btn">
+    <a href="javascript:void (0);" id="share">我要分享</a>
+</div>
+
+<!-- 分享之后显示的内容 -->
+<div class="popup-wrapper">
+    <div class="popup-content">
+        <h4 class="popup-title">
+            分享成功
+            <a href="javascript:void (0);" class="close">
+                <img src="./img/close.png" alt="关闭">
+            </a>
+        </h4>
+        <ul class="content-list">
+            <li>
+                <a href="#">
+                    <p class="w100">蒙古决定要回归：中国高兴睡不着，美俄听后很震惊蒙古决定要回归：中国高兴睡不着，美俄听后很震惊</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <p class="w72">蒙古决定要回归：中国高兴睡不着，美俄听后很震惊</p>
+                    <img src="./img/popup-img.png" alt="新闻标题">
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- 遮罩层 -->
+<div class="bg"></div>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#share").on("click", function () {
+            $(".popup-wrapper").on('touchmove', function (event) {
+                event.preventDefault();
+            });
+            $(".popup-wrapper").show();
+            $(".popup-content").show();
+            $(".bg").show();
+            $(window).scrollTop(0);
+            $("body, html").css({"overflow": "hidden"});
+
+        });
+        $(".close, .bg, .popup-wrapper").on("click", function () {
+            $(".bg").hide();
+            $(".popup-content").hide();
+            $(".popup-wrapper").hide();
+            $(window).scrollTop(0);
+            $("body,html").css({"overflow": "auto"});
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <!--优先使用IE最新版本和Chrome-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--移动设备上屏幕显示区域的设置-->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <!--主要是针对苹果手机将数字自动识别为号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--启用全屏模式，伪装app，离线应用。-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--隐藏状态栏/设置状态栏颜色-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 ，告诉浏览器页面是否为手持设备优化，会被MobileOptimized覆盖 (旧浏览器和功能机上某些浏览器识别)-->
+    <meta name="HandheldFriendly" content="True">
+    <!-- 微软的老式浏览器 告诉浏览器页面为某个宽度特殊优化-->
+    <meta name="MobileOptimized" content="width">
+    <!--指定适合自己网站的渲染内核名称-->
+    <meta name="renderer" content="webkit"/>
+    <title>上传图片</title>
+    <script src="js/flexible.js"></script>
+    <script src="js/flexible_css.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <style type="text/css" rel="stylesheet">
+        /*
+        =========
+        表单页面 S
+        =========
+        */
+        .sign-up-wrapper {
+            width: 100%;
+            min-height: 100%;
+            background: #fff;
+        }
+
+        .sign-up-form {
+            margin-top: 0.32rem;
+            width: 90%;
+        }
+
+        .sign-up-form .w80 {
+            width: 78%;
+            padding: 0 0.3rem;
+        }
+
+        .sign-up-form label {
+            padding-right: 0.3rem;
+            display: block;
+            float: left;
+            width: 22%;
+            height: 1rem;
+            color: #3d3d3d;
+            line-height: 1.25;
+            vertical-align: middle;
+            text-align: right;
+            font-size: 0.38rem;
+            cursor: pointer;
+        }
+
+        .sign-up-form input {
+            float: left;
+            display: block;
+            font-size: 0.37333333333333335rem;
+            height: 1rem;
+        }
+
+        .sign-up-form .input-line {
+            position: relative;
+        }
+
+        .gray-btn {
+            background: #ccc !important;
+        }
+
+        /* 图片上传按钮的样式 START */
+        .fileWrap, .fileWrap1 {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            width: 2rem;
+            height: 2rem;
+            background-color: #fff;
+            cursor: pointer;
+            border-radius: 0.15rem;
+            border: 1px solid #ececec;
+        }
+
+        .fileWrap input[type=file], .fileWrap1 input[type=file] {
+            width: 2rem;
+            height: 2rem;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            z-index: 12;
+        }
+
+        .fileWrap button, .fileWrap1 button {
+            position: absolute;
+            top: 0.66667rem;
+            left: 0.66667rem;
+            z-index: 0;
+            width: 0.6rem;
+            height: 0.6rem;
+            cursor: pointer;
+            background-color: transparent;
+            border: 0;
+            outline: 0;
+        }
+
+        .fileWrap button img, .fileWrap1 button img {
+            width: 0.6rem;
+            height: 0.6rem;
+        }
+
+        .fileName, .fileName1 {
+            display: block;
+            width: 100%;
+            text-align: left;
+            color: #959595;
+            line-height: 2;
+        }
+
+        .div-panel {
+            margin-bottom: 0.2rem;
+            width: 78%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .m-left-22 {
+            margin-left: 22%;
+        }
+
+        #preview, #preview1 {
+            margin-left: 0.2rem;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .p-b-2 {
+            padding-bottom: 1.2rem;
+        }
+
+        .m-t-3 {
+            margin-top: 0.3rem;
+        }
+        .p-t-25 {
+            padding-top: 0.26667rem;
+        }
+        .p-t-50 {
+            padding-top: 0.8rem;
+        }
+        .m-left-22 {
+            margin-left: 22%;
+        }
+        /* 图片上传按钮的样式 END */
+    </style>
+</head>
+<body>
+<div class="sign-up-wrapper p-b-2">
+    <form class="sign-up-form center" id="signUpForm" method="post" enctype="multipart/form-data">
+        <div class="input-line m-t-3">
+            <label for="companyLogo" class="p-t-50">身份证正反面</label>
+            <div class="div-panel">
+                <div class="fileWrap">
+                    <button type="button"><img src="img/puls2.png" alt=""></button>
+                    <input type="file" class="company-file-btn file" multiple="multiple"
+                           id="companyLogo" name="companyLogo" onchange="previewImage(this)">
+
+                </div>
+                <img id="preview" alt=""/>
+                <span class="fileName">（请上传身份证正面照）</span>
+            </div>
+
+            <div class="div-panel m-left-22">
+                <div class="fileWrap1">
+                    <button type="button"><img src="img/puls2.png" alt=""></button>
+                    <input type="file" class="company-file-btn file1" multiple="multiple"
+                           id="companyLogo1" name="companyLogo1" onchange="previewImage1(this)">
+                </div>
+                <img id="preview1" alt=""/>
+                <span class="fileName1">（请上传身份证反面照）</span>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    // 上传文件的js
+    var $fileName = $('.fileName');
+
+    $('.file').change(function () {
+        var path = $(this).val();
+        var fileName = path ? path.substr(path.lastIndexOf('\\') + 1) : '请上传文件';
+        $fileName.text(fileName);
+    });
+
+    // 上传文件的js
+    var $fileName1 = $('.fileName1');
+
+    $('.file1').change(function () {
+        // debugger;
+        var path = $(this).val();
+        console.log(path);
+        var fileName = path ? path.substr(path.lastIndexOf('\\') + 1) : '请上传文件';
+        $fileName1.text(fileName);
+    });
+
+    // 上传图片前预览
+    function previewImage(file) {
+        var MAXWIDTH = 120;  // 最大图片宽度
+        var MAXHEIGHT = 120;  // 最大图片高度
+        if (file.files && file.files[0]) {
+            var img = document.getElementById('preview');
+            img.onload = function () {
+                var rect = getZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width = rect.width;
+                img.height = rect.height;
+            }
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                img.src = evt.target.result;
+            }
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            //兼容IE
+            file.select();
+            var src = document.selection.createRange().text;
+            var img = document.getElementById('preview');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        }
+    }
+
+    // 获取缩放的尺寸
+    function getZoomParam(maxWidth, maxHeight, width, height) {
+        var param = {top: 0, left: 0, width: width, height: height};
+        if (width > maxWidth || height > maxHeight) {
+            var rateWidth = width / maxWidth;
+            var rateHeight = height / maxHeight;
+            if (rateWidth > rateHeight) {
+                param.width = maxWidth;
+                param.height = Math.round(height / rateWidth);
+            } else {
+                param.width = Math.round(width / rateHeight);
+                param.height = maxHeight;
+            }
+        }
+        param.left = Math.round((maxWidth - param.width) / 2);
+        param.top = Math.round((maxHeight - param.height) / 2);
+        return param;
+    }
+
+    // 上传图片前预览
+    function previewImage1(file) {
+        var MAXWIDTH = 120;  // 最大图片宽度
+        var MAXHEIGHT = 120;  // 最大图片高度
+        if (file.files && file.files[0]) {
+            var img = document.getElementById('preview1');
+            img.onload = function () {
+                var rect = getZoomParam1(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width = rect.width;
+                img.height = rect.height;
+            }
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                img.src = evt.target.result;
+            }
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            //兼容IE
+            file.select();
+            var src = document.selection.createRange().text;
+            var img = document.getElementById('preview');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+        }
+    }
+
+    // 获取缩放的尺寸
+    function getZoomParam1(maxWidth, maxHeight, width, height) {
+        var param = {top: 0, left: 0, width: width, height: height};
+        if (width > maxWidth || height > maxHeight) {
+            var rateWidth = width / maxWidth;
+            var rateHeight = height / maxHeight;
+            if (rateWidth > rateHeight) {
+                param.width = maxWidth;
+                param.height = Math.round(height / rateWidth);
+            } else {
+                param.width = Math.round(width / rateHeight);
+                param.height = maxHeight;
+            }
+        }
+        param.left = Math.round((maxWidth - param.width) / 2);
+        param.top = Math.round((maxHeight - param.height) / 2);
+        return param;
+    }
+</script>
+</body>
+</html>

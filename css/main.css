@@ -1,0 +1,77 @@
+.small_font {
+  font-size: 10px;
+}
+[data-dpr="2"] .small_font {
+  font-size: 20px;
+}
+[data-dpr="3"] .small_font {
+  font-size: 30px;
+}
+
+.f-t-18 {
+  font-size: 18px;
+}
+[data-dpr="2"] .f-t-18 {
+  font-size: 36px;
+}
+[data-dpr="3"] .f-t-18 {
+  font-size: 54px;
+}
+
+.f-t-14 {
+  font-size: 14px;
+}
+[data-dpr="2"] .f-t-14 {
+  font-size: 28px;
+}
+[data-dpr="3"] .f-t-14 {
+  font-size: 42px;
+}
+
+.f-t-16 {
+  font-size: 16px;
+}
+[data-dpr="2"] .f-t-16 {
+  font-size: 32px;
+}
+[data-dpr="3"] .f-t-16 {
+  font-size: 48px;
+}
+
+.f-b {
+  font-weight: bolder;
+}
+
+.m-b-100 {
+  margin-bottom: 1.33333rem;
+}
+
+.m-b-60 {
+  margin-bottom: 0.8rem;
+}
+
+.m-b-80 {
+  margin-bottom: 1.06667rem;
+}
+
+.m-b-150 {
+  margin-bottom: 2rem;
+}
+
+.m-b-30 {
+  margin-bottom: 0.4rem;
+}
+
+.m-r-15 {
+  margin-right: 0.2rem;
+}
+
+.p-b-40 {
+  padding-bottom: 0.53333rem;
+}
+
+body {
+  color: #000;
+}
+
+/*# sourceMappingURL=main.css.map */

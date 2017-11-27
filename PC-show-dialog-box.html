@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <!--优先使用IE最新版本和Chrome-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--移动设备上屏幕显示区域的设置-->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <!--主要是针对苹果手机将数字自动识别为号码-->
+    <meta name="format-detection" content="telephone=no">
+    <!--启用全屏模式，伪装app，离线应用。-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!--隐藏状态栏/设置状态栏颜色-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- 针对手持设备优化，主要是针对一些老的不识别viewport的浏览器，比如黑莓 ，告诉浏览器页面是否为手持设备优化，会被MobileOptimized覆盖 (旧浏览器和功能机上某些浏览器识别)-->
+    <meta name="HandheldFriendly" content="True">
+    <!-- 微软的老式浏览器 告诉浏览器页面为某个宽度特殊优化-->
+    <meta name="MobileOptimized" content="width">
+    <!--指定适合自己网站的渲染内核名称-->
+    <meta name="renderer" content="webkit"/>
+    <title>PC端弹出层效果</title>
+    <script src="js/flexible.js"></script>
+    <script src="js/flexible_css.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <style type="text/css">
+        .login-btn {
+            position: fixed;
+            left: 40%;
+            top: 10%;
+            display: block;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 24px;
+            color: #fff;
+            background: #959595;
+        }
+
+        .line{
+            margin: 0 auto;
+            width: 600px;
+            height: 1600px;
+            background: #e0e0e0;
+        }
+        /* ==============
+           登录窗口 popup START
+           ============== */
+        .login-bg {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1004;
+        }
+
+        .popup-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -210px;
+            margin-left: -220px;
+            display: none;
+            width: 440px;
+            height: 420px;
+            background: #fff;
+            z-index: 10005;
+        }
+
+        .popup-content .middle-logo {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .popup-content .middle-logo img {
+            width: 78px;
+            height: 38px;
+        }
+
+        .popup-content .close {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            display: block;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .popup-content .close img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .popup-content .base-login {
+            margin: 0 auto;
+            width: 340px;
+        }
+
+        .popup-content .input-field {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #959595;
+        }
+
+        .popup-content .input-field > input {
+            padding-left: 20px;
+            width: 340px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 0;
+        }
+
+        .popup-content .base-login .verification > input {
+            width: 220px;
+        }
+
+        .popup-content .verification, .popup-content .phone-code {
+            position: relative;
+        }
+
+        .popup-content .captcha-wrap {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .popup-content .code-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: block;
+            width: 114px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #3b6ca6;
+            outline: none;
+            background: transparent;
+        }
+
+        .popup-content .code-btn:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 1px;
+            height: 24px;
+            background: #e0e0e0;
+        }
+
+        .popup-content .verity-code {
+            display: block;
+            width: 110px;
+            height: 40px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .popup-content .verity-code img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .popup-content .agreement-text {
+            font-size: 14px;
+            color: #959595;
+        }
+
+        .popup-content .user-agreement {
+            color: #3b6ca6;
+        }
+
+        .popup-content .action {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .popup-content .action-btn {
+            margin: 0 auto 20px;
+            width: 340px;
+            height: 40px;
+            line-height: 40px;
+            color: #fff;
+            font-size: 16px;
+            text-align: center;
+            background-color: #de3e47;
+            border-radius: 4px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .popup-content .sns-login {
+            margin: 0 auto;
+            width: 220px;
+        }
+
+        .popup-content .sns-login .sns {
+            padding-top: 50px;
+            display: inline-block;
+            width: 40px;
+            height: 65px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #959595;
+            text-align: center;
+        }
+
+        .popup-content .sns-login .qq-login {
+            margin: 0 44px;
+        }
+
+        .popup-content .sns-login .weibo-login {
+            background: url("img/weibo.png") no-repeat center top;
+            background-size: contain;
+        }
+
+        .popup-content .sns-login .qq-login {
+            background: url("img/qq.png") no-repeat center top;
+            background-size: contain;
+        }
+
+        .popup-content .sns-login .weixin-login {
+            background: url("img/weixin.png") no-repeat center top;
+            background-size: contain;
+        }
+
+        /* popup END */
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="line"><a href="javascript:void(0);" class="login-btn">登录</a></div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <!-- 登录窗口 -->
+    <div class="popup-content" style="display: none;">
+        <a href="javascript:void (0);" class="close">
+            <img src="./img/close.png" alt="关闭">
+        </a>
+        <div class="middle-logo">
+            <img src="./img/min-logo.png" alt="创业家logo">
+        </div>
+        <div class="base-login">
+            <form action="/auth/login/" method="POST">
+                <div class="input-field">
+                    <input id="mobile" type="text" name="mobile" placeholder="手机号">
+                </div>
+
+                <div class="input-field verification">
+                    <input id="captcha1" type="text" name="captcha1" placeholder="验证码">
+                    <div class="captcha-wrap">
+                        <a href="javascript:void(0);" class="verity-code">
+                            <img class="y-right captcha" alt="验证码" src="./img/verity-code.png">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="input-field phone-code">
+                    <input id="code" type="text" name="code" placeholder="手机验证码">
+                    <button type="button" class="code-btn" id="codeBtn">获取验证码</button>
+                </div>
+
+                <div class="action">
+                    <input id="agreement" class="agreement" type="checkbox" name="agreement" checked="checked">
+                    <label for="agreement" class="agreement-text">我已阅读并同意<a href="http://www.iheima.com" target="_blank"
+                                                                            class="user-agreement">用户协议和隐私条款</a></label>
+                </div>
+
+                <button type="button" name="submitBtn" class="action-btn">登录</button>
+
+            </form>
+            <div class="sns-login">
+                <a href="javascript:void(0);" class="sns weibo-login">微博</a>
+                <a href="javascript:void(0);" class="sns qq-login">QQ</a>
+                <a href="javascript:void(0);" class="sns weixin-login">微信</a>
+            </div>
+        </div>
+    </div>
+    <div class="login-bg" style="display: none;"></div>
+</div>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    // 登录窗口弹出层
+    $(function () {
+        //切换验证码
+        $(".login-btn").on("click", function () {
+            $(".popup-content").show();
+            $(".login-bg").show();
+            $("body, html").css({"overflow": "hidden"});
+        });
+        $(".login-bg, .close").on("click", function () {
+            $(".login-bg").hide();
+            $(".popup-content").hide();
+            $("body, html").css({"overflow": "auto"});
+        });
+    });
+</script>
+</body>
+</html>
