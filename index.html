@@ -21,5 +21,81 @@
 <div class="wrapper">
 </div>
 <script src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="//res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript">
+    $(function () {
+        window.InitWeixinShare = function (e) {
+            $.ajax({
+                url: '//sapi.chuangyejia.com/web/api/jssdk?jsoncallback=?',
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                data: {
+                    HTTP_X_CURRENT_URL: location.href.replace(/#.*$/, ""),
+                }
+            })
+                    .done(function (data) {
+                        wx.config({
+                            debug: !1,
+                            appId: data.appId,
+                            timestamp: data.timestamp,
+                            nonceStr: data.nonceStr,
+                            signature: data.signature,
+                            jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
+                        });
+                        wx.ready(function () {
+                            wx.onMenuShareTimeline({
+                                title: e.shareTitle,
+                                link: e.shareLink,
+                                imgUrl: e.shareImg,
+                                success: function () {
+                                    $(".popup-wrapper").on('touchmove', function (event) {
+                                        event.preventDefault();
+                                    });
+                                    $(".popup-wrapper").show();
+                                    $(".popup-content").show();
+                                    $(".bg").show();
+                                    $(window).scrollTop(0);
+                                    $("body, html").css({"overflow": "hidden"});
+                                },
+                                cancel: function () {
+                                }
+                            });
+                            wx.onMenuShareAppMessage({
+                                title: e.shareTitle,
+                                desc: e.shareDesc,
+                                link: e.shareLink,
+                                imgUrl: e.shareImg,
+                                type: "link",
+                                dataUrl: "",
+                                success: function () {
+                                    $(".popup-wrapper").on('touchmove', function (event) {
+                                        event.preventDefault();
+                                    });
+                                    $(".popup-wrapper").show();
+                                    $(".popup-content").show();
+                                    $(".bg").show();
+                                    $(window).scrollTop(0);
+                                    $("body, html").css({"overflow": "hidden"});
+                                },
+                                cancel: function () {
+                                }
+                            });
+                            wx.error(function () {
+                            });
+                        });
+                    });
+        };
+    });
+    $(document).ready(function () {
+        var WEIXINSHARE = {
+            shareTitle: "深网独家｜俞永福即将离职创业，阿里大文娱突围梦受阻-创业家" || window.document.title + "-创业家",
+            shareDesc: "来源：腾讯深网（微信号ID：qqshenwang）文/深网报道组韩依民孙宏超尽管以阿里巴巴集团董事局主席马云为第一男主的" || window.document.URL,
+            shareLink: location.href,
+            shareImg: 'https://iheima.oss-cn-beijing.aliyuncs.com/cyjzx/logo.png'
+        };
+        InitWeixinShare(WEIXINSHARE);
+    });
+</script>
 </body>
 </html>
